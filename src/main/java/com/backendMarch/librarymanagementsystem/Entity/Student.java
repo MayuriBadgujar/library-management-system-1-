@@ -35,6 +35,10 @@ public class Student {
     @Column(unique = true)
     private String email;
 
+    //private String mobNo;
+
+
+
     @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
     LibraryCard card;
 }

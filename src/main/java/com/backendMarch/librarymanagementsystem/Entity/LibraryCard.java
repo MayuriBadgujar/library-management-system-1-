@@ -29,15 +29,13 @@ public class LibraryCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cardNo;
 
-    private String validTill;
+   // private String validTill;
 
    @CreationTimestamp
     private Date creationDate;
 
     @UpdateTimestamp
     private Date updationDate;
-
-
 
 
     @Enumerated(EnumType.STRING)

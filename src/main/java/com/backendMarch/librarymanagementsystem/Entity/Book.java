@@ -33,7 +33,7 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
-    @JsonIgnore
+   // @JsonIgnore
     Author author;
 
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
