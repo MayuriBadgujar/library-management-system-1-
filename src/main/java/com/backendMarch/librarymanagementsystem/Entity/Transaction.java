@@ -32,6 +32,7 @@ public class Transaction {
     private Date transactionDate;
     private boolean isIssuedOperation;
 
+    private String message;
     @ManyToOne
     @JoinColumn
     LibraryCard card;

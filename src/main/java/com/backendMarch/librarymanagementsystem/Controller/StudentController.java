@@ -31,7 +31,8 @@ public class StudentController {
 
     @GetMapping("/find_by_email")
     public String findStudentByEmail(@RequestParam("email") String email){
-        return studentService.findByEmail(email);
+
+       return studentService.findByEmail(email);
     }
     /*
     @PutMapping("/update_email")
