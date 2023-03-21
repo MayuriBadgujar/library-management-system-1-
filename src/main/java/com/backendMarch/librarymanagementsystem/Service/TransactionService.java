@@ -12,7 +12,10 @@ import com.backendMarch.librarymanagementsystem.Repository.CardRepository;
 import com.backendMarch.librarymanagementsystem.Repository.TransactionRepository;
 import com.sun.jdi.event.ExceptionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.mail.SimpleMailMessage;
+;
 
 import java.util.UUID;
 
@@ -21,6 +24,9 @@ public class TransactionService {
 
     @Autowired
     CardRepository cardRepository;
+
+    @Autowired
+    private JavaMailSender emailSender;
 
     @Autowired
     TransactionRepository transactionRepository;
@@ -91,6 +97,17 @@ public class TransactionService {
         issueBookResponseDto.setTransactionId(transaction.getTransactionNumber());
         issueBookResponseDto.setTransactionStatus(TransactionStatus.SUCCESS);
         issueBookResponseDto.setBookName(book.getTitle());
+
+        // send an email
+        String text = "Congrats !!." + card.getStudent().getName()+ "You have been issued "+book.getTitle()+" book.";
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("mayuribadgujar1998@gmail.com");
+        message.setTo(card.getStudent().getEmail());
+        message.setSubject("Issue Book Notification");
+        message.setText(text);
+        emailSender.send(message);
+
        return  issueBookResponseDto;
 
     }
